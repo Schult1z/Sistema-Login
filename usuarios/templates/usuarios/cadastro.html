@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRIAR CONTA</title>
+    <link rel="stylesheet" href="{% static 'usuarios/css/estilo.css' %}">
+</head>
+<body>
+    <main class="container">
+        <section class = "card">
+            <h1>Criar Nova Conta</h1>
+            <p class="subtitulo">Preencha os dados para realizar o cadastro</p>
+            {% if messages %}
+                {% for message in messages %}
+                <p class="mensagem {{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}    
+                
+                <div class="campo">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                </div>
+
+                <div class="campo">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="campo">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    {{ form.password1.errors }}
+                </div>
+                <div class="campo">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
+                </div>
+
+                <button type="submit">CADASTRAR</button>
+            </form>
+
+        </section>
+    </main>
+</body>
+</html>

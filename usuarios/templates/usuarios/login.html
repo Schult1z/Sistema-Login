@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar</title>
+    <link rel="stylesheet" href="{% static 'usuarios/css/estilo.css' %}">
+</head>
+<body>
+    <main class="container">
+        <section class="card">
+            <h1>Bem-vindo de volta!</h1>
+            <p class="subtitulo">Entre com seus dados para continuar.</p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="mensagem">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="campo">
+                    <label for="username">Nome de usuário</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <p class="rodape">
+                Ainda não tem uma conta?
+                <a href="{% url 'cadastro' %}">Criar conta</a>
+            </p>
+        </section>
+    </main>
+</body>
+</html>

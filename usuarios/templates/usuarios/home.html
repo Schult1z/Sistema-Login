@@ -1,0 +1,28 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página inicial</title>
+    <link rel="stylesheet" href="{% static 'usuarios/css/estilo.css' %}">
+</head>
+<body>
+    <main class="container">
+        <section class="card">
+            <h1>Bem-vindo ao sistema!</h1>
+
+            <p class="subtitulo">
+                Olá, {{ request.user.username }}!
+                Você está conectado.
+            </p>
+
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Sair da conta</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
